@@ -5,13 +5,13 @@ import ConfirmationModal from './ConfirmationModal'; // Import the modal compone
 
 function App() {
   const [characters, setCharacters] = useState(() => {
-    const savedCharacters = sessionStorage.getItem('characters');
+    const savedCharacters = localStorage.getItem('characters');
     return savedCharacters ? JSON.parse(savedCharacters) : [];
   });
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   useEffect(() => {
-    sessionStorage.setItem('characters', JSON.stringify(characters));
+    localStorage.setItem('characters', JSON.stringify(characters));
   }, [characters]);
 
   const addCharacter = (character) => {
@@ -34,7 +34,7 @@ function App() {
 
   const resetCharacters = () => {
     setCharacters([]); // Clear character list
-    sessionStorage.removeItem('characters'); // Clear sessionStorage
+    localStorage.removeItem('characters'); // Clear localStorage
     setIsModalOpen(false); // Close modal
   };
 
