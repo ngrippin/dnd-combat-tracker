@@ -11,7 +11,7 @@ function CharacterCard({ character, index, onUpdateCharacter, onRemoveCharacter 
   };
 
   return (
-    <div style={{ border: "1px solid #ccc", padding: "10px", margin: "10px 0" }}>
+    <div style={{ color: character.enemy ? 'red' : 'black' }}> {/* Conditional styling */}
       <h2>{character.name}</h2>
       <p>Initiative: {character.initiative}</p>
       <div>Statuses:</div>
