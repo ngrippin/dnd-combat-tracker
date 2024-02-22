@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
+import './CharacterCard.css';
 
-function CharacterCard({ character, index, onUpdateCharacter, onRemoveCharacter }) {
+function CharacterCard({ character, index, onUpdateCharacter, onRemoveCharacter, isSelected }) {
+  const cardClasses = `character-card ${character.enemy ? 'enemy' : ''} ${isSelected ? 'selected' : ''}`;
   const [isEditing, setIsEditing] = useState(false);
   const [editedInitiative, setEditedInitiative] = useState(character.initiative);
   const [editedStatus, setEditedStatus] = useState(character.statuses);
@@ -20,6 +22,12 @@ function CharacterCard({ character, index, onUpdateCharacter, onRemoveCharacter 
       setIsEditing(false);
     };
 
+      const handleKeyDown = (event) => {
+        if (event.key === 'Enter') {
+          handleSaveEdit();
+        }
+      };
+
   // Toggle status on or off
   const toggleStatus = (status) => {
     const hasStatus = editedStatus.includes(status);
@@ -34,22 +42,20 @@ function CharacterCard({ character, index, onUpdateCharacter, onRemoveCharacter 
   };
 
   return (
-    <div style={{ color: character.enemy ? 'red' : 'black' }}> {/* Conditional styling */}
+    <div className={cardClasses}> {/* Conditional styling */}
       <h2>{character.name}</h2>
       {isEditing ? (
               <>
                 <input
                   type="number"
                   value={editedInitiative}
+                  onKeyDown={handleKeyDown} // Listening for key down events
                   onChange={(e) => setEditedInitiative(Number(e.target.value))}
                 />
-                <button onClick={handleSaveEdit}>Save</button>
-                <button onClick={handleCancelEdit}>Cancel</button>
               </>
             ) : (
               <>
-                <p>Initiative: {character.initiative}</p>
-                <button onClick={handleEdit}>Edit</button>
+                <p onClick={handleEdit}>Initiative: {character.initiative}</p>
               </>
             )}
       <div>Statuses:</div>

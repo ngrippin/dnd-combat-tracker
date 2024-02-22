@@ -1,0 +1,13 @@
+.character-card {
+  border: 2px solid #ccc;
+  padding: 10px;
+  margin: 10px 0;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+.character-card.enemy h2 {
+  color: red;
+}
+.character-card.selected {
+  background: content-box radial-gradient(white, skyblue);
+}
