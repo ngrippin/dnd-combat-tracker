@@ -1,23 +1,32 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from 'react';
+import InitiativeList from './InitiativeList';
+import AddCharacterForm from './AddCharacterForm';
 
 function App() {
+  const [characters, setCharacters] = useState([]);
+
+  // When adding a character, include a statuses field.
+  const addCharacter = (character) => {
+    const newCharacter = { ...character, statuses: [] }; // Initialize with no statuses
+    setCharacters([...characters, newCharacter]);
+  };
+
+  const updateCharacter = (updatedCharacter) => {
+    const updatedCharacters = characters.map((character) =>
+      character.name === updatedCharacter.name ? updatedCharacter : character
+    );
+    setCharacters(updatedCharacters);
+  };
+
+    const removeCharacter = (index) => {
+      setCharacters(characters.filter((_, i) => i !== index));
+    };
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h1>D&D Combat Tracker</h1>
+      <AddCharacterForm onAddCharacter={addCharacter} />
+        <InitiativeList characters={characters} onUpdateCharacter={updateCharacter} onRemoveCharacter={removeCharacter} />
     </div>
   );
 }
