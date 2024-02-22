@@ -47,9 +47,11 @@ function CharacterCard({ character, index, onUpdateCharacter, onRemoveCharacter,
       {isEditing ? (
               <>
                 <input
+                    autoFocus
                   type="number"
                   value={editedInitiative}
                   onKeyDown={handleKeyDown} // Listening for key down events
+                  onBlur={handleSaveEdit}
                   onChange={(e) => setEditedInitiative(Number(e.target.value))}
                 />
               </>
@@ -58,21 +60,23 @@ function CharacterCard({ character, index, onUpdateCharacter, onRemoveCharacter,
                 <p onClick={handleEdit}>Initiative: {character.initiative}</p>
               </>
             )}
-      <div>Statuses:</div>
-      <div>
-        {["Helpless", "Advantaged"].map((status) => (
-          <button
-            key={status}
-            onClick={() => toggleStatus(status)}
-            style={{
-              margin: "5px",
-              backgroundColor: editedStatus.includes(status) ? "red" : "grey",
-            }}
-          >
-            {status}
-          </button>
-        ))}
-      </div>
+    <div style={{ display: 'flex', alignItems: 'center' }}>
+          <div>Statuses:</div>
+          <div>
+            {["Helpless", "Advantaged"].map((status) => (
+              <button
+                key={status}
+                onClick={() => toggleStatus(status)}
+                style={{
+                  margin: "5px",
+                  backgroundColor: editedStatus.includes(status) ? "red" : "grey",
+                }}
+              >
+                {status}
+              </button>
+            ))}
+          </div>
+          </div>
       <button onClick={() => onRemoveCharacter(index)}>Remove Character</button>
     </div>
   );

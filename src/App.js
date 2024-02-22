@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import InitiativeList from './InitiativeList';
 import AddCharacterForm from './AddCharacterForm';
 import ConfirmationModal from './ConfirmationModal'; // Import the modal component
+import './App.css';
 
 function App() {
   const [characters, setCharacters] = useState(() => {
@@ -86,11 +87,14 @@ function App() {
   return (
     <div className="App">
       <h1>D&D Combat Tracker</h1>
-      <div>Use up and down arrow keys to highlight the active character</div>
+      <div class="instruction">Click on an Initiative score to edit</div>
+      <div class="instruction">Use up and down arrow keys to highlight the active character</div>
+      <h3>Add and reset characters</h3>
+      <AddCharacterForm onAddCharacter={addCharacter} />
       <button onClick={handleReset}>Reset Characters</button>
-  <div style={{ display: 'flex', flexDirection: 'row' }}>
+      <hr class="separator" />
+    <div style={{ display: 'flex', flexDirection: 'row' }}>
     <div style={{ flex: 1, marginRight: '20px' }}> {/* InitiativeList Container */}
-        <AddCharacterForm onAddCharacter={addCharacter} />
         <InitiativeList characters={characters}
         onUpdateCharacter={onUpdateCharacter}
         onRemoveCharacter={removeCharacter}

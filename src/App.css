@@ -1,4 +1,12 @@
 .App {
+  text-align: left;
+}
+
+.App h1 {
+   text-align: center;
+ }
+
+.instruction {
   text-align: center;
 }
 
@@ -22,10 +30,17 @@
   justify-content: center;
   font-size: calc(10px + 2vmin);
   color: white;
+  padding: 5px;
 }
 
 .App-link {
   color: #61dafb;
+}
+
+.separator {
+  height: 10px;
+  background-color: black;
+  border: none;
 }
 
 @keyframes App-logo-spin {
