@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/dnd-combat-tracker/static/css/main.e6c13ad2.css",
-    "main.js": "/dnd-combat-tracker/static/js/main.00fa732e.js",
+    "main.js": "/dnd-combat-tracker/static/js/main.e4fde48e.js",
     "static/js/453.0196b417.chunk.js": "/dnd-combat-tracker/static/js/453.0196b417.chunk.js",
     "index.html": "/dnd-combat-tracker/index.html",
     "main.e6c13ad2.css.map": "/dnd-combat-tracker/static/css/main.e6c13ad2.css.map",
-    "main.00fa732e.js.map": "/dnd-combat-tracker/static/js/main.00fa732e.js.map",
+    "main.e4fde48e.js.map": "/dnd-combat-tracker/static/js/main.e4fde48e.js.map",
     "453.0196b417.chunk.js.map": "/dnd-combat-tracker/static/js/453.0196b417.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.e6c13ad2.css",
-    "static/js/main.00fa732e.js"
+    "static/js/main.e4fde48e.js"
   ]
 }
