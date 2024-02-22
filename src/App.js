@@ -42,8 +42,8 @@ function App() {
     <div className="App">
       <h1>D&D Combat Tracker</h1>
       <AddCharacterForm onAddCharacter={addCharacter} />
-      <InitiativeList characters={characters} onUpdateCharacter={onUpdateCharacter} onRemoveCharacter={removeCharacter} />
       <button onClick={handleReset}>Reset Characters</button>
+      <InitiativeList characters={characters} onUpdateCharacter={onUpdateCharacter} onRemoveCharacter={removeCharacter} />
       <ConfirmationModal
         isOpen={isModalOpen}
         onClose={() => setIsModalOpen(false)}
