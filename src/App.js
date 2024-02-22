@@ -9,6 +9,7 @@ function App() {
     return savedCharacters ? JSON.parse(savedCharacters) : [];
   });
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [imageSrc, setImageSrc] = useState(null);
 
   useEffect(() => {
     localStorage.setItem('characters', JSON.stringify(characters));
@@ -38,6 +39,19 @@ function App() {
     setIsModalOpen(false); // Close modal
   };
 
+    const handleImageUpload = (event) => {
+      const file = event.target.files[0];
+      if (file && file.type.substr(0, 5) === 'image') {
+        const reader = new FileReader();
+        reader.onloadend = () => {
+          setImageSrc(reader.result);
+        };
+        reader.readAsDataURL(file);
+      } else {
+        setImageSrc(null);
+      }
+    };
+
   return (
     <div className="App">
       <h1>D&D Combat Tracker</h1>
@@ -50,6 +64,14 @@ function App() {
         onConfirm={resetCharacters}
         message="Are you sure you want to reset the entire list of characters?"
       />
+        <div style={{ margin: '20px 0' }}>
+              <input type="file" onChange={handleImageUpload} accept="image/*" />
+        </div>
+        {imageSrc && (
+          <div>
+            <img src={imageSrc} alt="Uploaded" style={{ maxWidth: '200px', maxHeight: '200px' }} />
+          </div>
+        )}
     </div>
   );
 }
