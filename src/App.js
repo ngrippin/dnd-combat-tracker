@@ -87,12 +87,12 @@ function App() {
   return (
     <div className="App">
       <h1>D&D Combat Tracker</h1>
-      <div class="instruction">Click on an Initiative score to edit</div>
-      <div class="instruction">Use up and down arrow keys to highlight the active character</div>
-      <h3>Add and reset characters</h3>
+      <div className="instruction">Click on an Initiative score to edit</div>
+      <div className="instruction">Use up and down arrow keys to highlight the active character</div>
+      <h3 style={{ margin: '0px 10px' }}>Add and reset characters</h3>
       <AddCharacterForm onAddCharacter={addCharacter} />
-      <button onClick={handleReset}>Reset Characters</button>
-      <hr class="separator" />
+      <button style={{ margin: '0px 10px' }} onClick={handleReset}>Reset Characters</button>
+      <hr className="separator" />
     <div style={{ display: 'flex', flexDirection: 'row' }}>
     <div style={{ flex: 1, marginRight: '20px' }}> {/* InitiativeList Container */}
         <InitiativeList characters={characters}
@@ -108,12 +108,13 @@ function App() {
         </div>
         {imageSrc && (
           <div>
-            <img src={imageSrc} alt="Uploaded" style={{ maxWidth: '200px', maxHeight: '200px' }} />
+            <img src={imageSrc} alt="Uploaded" />
           </div>
         )}
       </div>
     </div>
       <ConfirmationModal
+        style={{border: '2px solid black'}}
         isOpen={isModalOpen}
         onClose={() => setIsModalOpen(false)}
         onConfirm={resetCharacters}

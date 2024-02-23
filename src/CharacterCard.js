@@ -46,14 +46,14 @@ function CharacterCard({ character, index, onUpdateCharacter, onRemoveCharacter,
       <h2>{character.name}</h2>
       {isEditing ? (
               <>
-                <input
-                    autoFocus
-                  type="number"
-                  value={editedInitiative}
-                  onKeyDown={handleKeyDown} // Listening for key down events
-                  onBlur={handleSaveEdit}
-                  onChange={(e) => setEditedInitiative(Number(e.target.value))}
-                />
+                <select
+                    value={editedInitiative}
+                    onChange={(e) => setEditedInitiative(Number(e.target.value))}
+                  >
+                    {Array.from({ length: 31 }, (_, i) => (
+                      <option key={i} value={i}>{i}</option>
+                    ))}
+                  </select>
               </>
             ) : (
               <>

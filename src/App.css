@@ -37,6 +37,11 @@
   color: #61dafb;
 }
 
+.ConfirmationModal {
+    border-radius: 5px;
+    border: 2px solid #ccc;
+}
+
 .separator {
   height: 10px;
   background-color: black;

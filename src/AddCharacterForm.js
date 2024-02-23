@@ -17,17 +17,22 @@ function AddCharacterForm({ onAddCharacter }) {
     <form onSubmit={handleSubmit}>
       <input
         type="text"
+        style={{ margin: '0px 10px' }}
         placeholder="Character Name"
         value={name}
         onChange={(e) => setName(e.target.value)}
       />
-      <input
-        type="number"
-        placeholder="Initiative"
-        value={initiative}
-        onChange={(e) => setInitiative(e.target.value)}
-      />
-      <label>
+      Initiative:
+      <select
+          value={initiative}
+          style={{ margin: '0px 10px' }}
+          onChange={(e) => setInitiative(e.target.value)}
+        >
+          {Array.from({ length: 31 }, (_, i) => (
+            <option key={i} value={i}>{i}</option>
+          ))}
+        </select>
+      <label style={{ margin: '0px 10px' }}>
         Enemy?
         <input
           type="checkbox"
