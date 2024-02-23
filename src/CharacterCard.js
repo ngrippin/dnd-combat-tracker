@@ -3,6 +3,8 @@ import Button from '@mui/material/Button';
 import ButtonGroup from '@mui/material/ButtonGroup';
 import Select from '@mui/material/Select';
 import MenuItem from '@mui/material/MenuItem';
+import Fab from '@mui/material/Fab';
+import PersonOffIcon from '@mui/icons-material/PersonOff';
 import './CharacterCard.css';
 
 function CharacterCard({ character, index, onUpdateCharacter, onRemoveCharacter, isSelected }) {
@@ -72,42 +74,48 @@ function CharacterCard({ character, index, onUpdateCharacter, onRemoveCharacter,
     };
 
   return (
-    <div className={cardClasses}> {/* Conditional styling */}
-      <h2 style={{ margin: '10px 10px' }}>{character.name}</h2>
-      {isEditing ? (
-              <>
-                <Select
-                    style={{ margin: '10px 10px', height: 40 }}
-                    value={editedInitiative}
-                    onChange={handleChangeInitiative}
+    <div className={cardClasses} style={{ display: 'flex'}}> {/* Conditional styling */}
+        <div style={{ flex: 1, marginRight: '20px' }}>
+          <h2 style={{ margin: '10px 10px' }}>{character.name}</h2>
+          {isEditing ? (
+                  <>
+                    <Select
+                        style={{ margin: '10px 10px', height: 40 }}
+                        value={editedInitiative}
+                        onChange={handleChangeInitiative}
+                      >
+                        {Array.from({ length: 31 }, (_, i) => (
+                          <MenuItem key={i} value={i}>{i}</MenuItem>
+                        ))}
+                      </Select>
+                  </>
+                ) : (
+                  <>
+                    <p onClick={handleEdit} style={{ margin: '10px 10px' }}>Initiative: {character.initiative}</p>
+                  </>
+                )}
+        <div style={{ display: 'flex', alignItems: 'center' }}>
+              <div style={{ margin: '0px 10px' }}>Statuses:</div>
+              <ButtonGroup variant="contained">
+                {["Helpless", "Advantaged", "Concentrating"].map((status) => (
+                  <Button
+                    key={status}
+                    onClick={() => toggleStatus(status)}
+                    style={{
+                      backgroundColor: editedStatus.includes(status) ? getStatusButtonColor(status) : "grey",
+                    }}
                   >
-                    {Array.from({ length: 31 }, (_, i) => (
-                      <MenuItem key={i} value={i}>{i}</MenuItem>
-                    ))}
-                  </Select>
-              </>
-            ) : (
-              <>
-                <p onClick={handleEdit} style={{ margin: '10px 10px' }}>Initiative: {character.initiative}</p>
-              </>
-            )}
-    <div style={{ display: 'flex', alignItems: 'center' }}>
-          <div style={{ margin: '0px 10px' }}>Statuses:</div>
-          <ButtonGroup variant="contained">
-            {["Helpless", "Advantaged", "Concentrating"].map((status) => (
-              <Button
-                key={status}
-                onClick={() => toggleStatus(status)}
-                style={{
-                  backgroundColor: editedStatus.includes(status) ? getStatusButtonColor(status) : "grey",
-                }}
-              >
-                {status}
-              </Button>
-            ))}
-          </ButtonGroup>
-          </div>
-      <Button onClick={() => onRemoveCharacter(index)}>Remove Character</Button>
+                    {status}
+                  </Button>
+                ))}
+              </ButtonGroup>
+              </div>
+              </div>
+       <div style={{ flex: 0, alignItems: 'right',}}>
+          <Fab size="medium" color="primary" aria-label="delete" onClick={() => onRemoveCharacter(index)}>
+            <PersonOffIcon />
+          </Fab>
+      </div>
     </div>
   );
 }

@@ -93,8 +93,7 @@ function App() {
     <CssBaseline />
     <div className="App" style={{ backgroundColor: theme.palette.background.default, minHeight: '100vh' }}>
       <h1 style={{ margin: '0px 10px' }}>D&D Combat Tracker</h1>
-      <div className="instruction">Click on an Initiative score to edit</div>
-      <div className="instruction">Use up and down arrow keys to highlight the active character</div>
+      <div className="instruction">Click an Initiative score to edit. Use up and down arrow keys to highlight the active character</div>
       <h3 style={{ margin: '0px 10px' }}>Add and reset characters</h3>
       <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between', marginBottom: '20px' }}>
           <AddCharacterForm onAddCharacter={addCharacter} />
