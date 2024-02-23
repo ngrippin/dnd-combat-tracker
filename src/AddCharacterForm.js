@@ -1,4 +1,9 @@
 import React, { useState } from 'react';
+import Button from '@mui/material/Button';
+import Select from '@mui/material/Select';
+import MenuItem from '@mui/material/MenuItem';
+import TextField from '@mui/material/TextField';
+import Checkbox from '@mui/material/Checkbox';
 
 function AddCharacterForm({ onAddCharacter }) {
   const [name, setName] = useState('');
@@ -15,32 +20,33 @@ function AddCharacterForm({ onAddCharacter }) {
 
   return (
     <form onSubmit={handleSubmit}>
-      <input
+      <TextField
+        variant="standard"
         type="text"
-        style={{ margin: '0px 10px' }}
+        style={{ margin: '10px 10px' }}
         placeholder="Character Name"
         value={name}
         onChange={(e) => setName(e.target.value)}
       />
       Initiative:
-      <select
+      <Select
           value={initiative}
-          style={{ margin: '0px 10px' }}
+          style={{ margin: '10px 10px', height: 40 }}
           onChange={(e) => setInitiative(e.target.value)}
         >
           {Array.from({ length: 31 }, (_, i) => (
-            <option key={i} value={i}>{i}</option>
+            <MenuItem  key={i} value={i}>{i}</MenuItem >
           ))}
-        </select>
-      <label style={{ margin: '0px 10px' }}>
+        </Select>
+      <label style={{ margin: '10px 10px' }}>
         Enemy?
-        <input
+        <Checkbox
           type="checkbox"
           checked={isEnemy}
           onChange={(e) => setIsEnemy(e.target.checked)}
         />
       </label>
-      <button type="submit">Add Character</button>
+      <Button variant="outlined" type="submit">Add Character</Button>
     </form>
   );
 }

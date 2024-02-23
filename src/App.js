@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { CssBaseline } from '@mui/material';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
+import Button from '@mui/material/Button';
 import theme from './theme';
 import InitiativeList from './InitiativeList';
 import AddCharacterForm from './AddCharacterForm';
@@ -97,7 +98,7 @@ function App() {
       <h3 style={{ margin: '0px 10px' }}>Add and reset characters</h3>
       <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between', marginBottom: '20px' }}>
           <AddCharacterForm onAddCharacter={addCharacter} />
-          <button onClick={handleReset} style={{ margin: '0px 10px' }}>Reset Characters</button>
+          <Button variant="outlined" onClick={handleReset} style={{ margin: '10px 10px' }}>Reset Characters</Button>
         </div>
     <hr className="separator" />
     <div style={{ display: 'flex', flexDirection: 'row' }}>
@@ -111,8 +112,13 @@ function App() {
     <div style={{ flex: 1 }}> {/* Image Upload and Display Container */}
         {/* Image upload input and display logic here */}
         <div style={{ margin: '20px 0' }}>
-          <div>Upload an accent image here</div>
-          <input type="file" onChange={handleImageUpload} accept="image/*" />
+          <div>Upload an accent image here:</div>
+          <input type="file" onChange={handleImageUpload} accept="image/*" style={{ display: 'none' }} id="button-file-upload"/>
+          <label htmlFor="button-file-upload">
+            <Button variant="outlined" component="span">
+              Upload
+            </Button>
+          </label>
         </div>
         {imageSrc && (
           <div>

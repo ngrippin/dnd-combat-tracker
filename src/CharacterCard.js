@@ -1,4 +1,8 @@
 import React, { useState } from 'react';
+import Button from '@mui/material/Button';
+import ButtonGroup from '@mui/material/ButtonGroup';
+import Select from '@mui/material/Select';
+import MenuItem from '@mui/material/MenuItem';
 import './CharacterCard.css';
 
 function CharacterCard({ character, index, onUpdateCharacter, onRemoveCharacter, isSelected }) {
@@ -53,43 +57,57 @@ function CharacterCard({ character, index, onUpdateCharacter, onRemoveCharacter,
     onUpdateCharacter(index, updatedCharacter);
   };
 
+    // Function to determine button color based on status
+    const getStatusButtonColor = (status) => {
+      switch (status) {
+        case 'Advantaged':
+          return 'green';
+        case 'Concentrating':
+          return 'blue';
+        case 'Helpless':
+          return 'red';
+        default:
+          return 'grey'; // Default color for other statuses
+      }
+    };
+
   return (
     <div className={cardClasses}> {/* Conditional styling */}
-      <h2>{character.name}</h2>
+      <h2 style={{ margin: '10px 10px' }}>{character.name}</h2>
       {isEditing ? (
               <>
-                <select
+                <Select
+                    style={{ margin: '10px 10px', height: 40 }}
                     value={editedInitiative}
                     onChange={handleChangeInitiative}
                   >
                     {Array.from({ length: 31 }, (_, i) => (
-                      <option key={i} value={i}>{i}</option>
+                      <MenuItem key={i} value={i}>{i}</MenuItem>
                     ))}
-                  </select>
+                  </Select>
               </>
             ) : (
               <>
-                <p onClick={handleEdit}>Initiative: {character.initiative}</p>
+                <p onClick={handleEdit} style={{ margin: '10px 10px' }}>Initiative: {character.initiative}</p>
               </>
             )}
     <div style={{ display: 'flex', alignItems: 'center' }}>
-          <div>Statuses:</div>
-          <div>
+          <div style={{ margin: '0px 10px' }}>Statuses:</div>
+          <ButtonGroup variant="contained">
             {["Helpless", "Advantaged", "Concentrating"].map((status) => (
-              <button
+              <Button
                 key={status}
                 onClick={() => toggleStatus(status)}
                 style={{
-                  margin: "5px",
-                  backgroundColor: editedStatus.includes(status) ? "red" : "grey",
+                  backgroundColor: editedStatus.includes(status) ? getStatusButtonColor(status) : "grey",
                 }}
               >
                 {status}
-              </button>
+              </Button>
             ))}
+          </ButtonGroup>
           </div>
-          </div>
-      <button onClick={() => onRemoveCharacter(index)}>Remove Character</button>
+      <Button onClick={() => onRemoveCharacter(index)}>Remove Character</Button>
     </div>
   );
 }
