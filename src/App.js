@@ -1,4 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
+import { CssBaseline } from '@mui/material';
+import { ThemeProvider, createTheme } from '@mui/material/styles';
+import theme from './theme';
 import InitiativeList from './InitiativeList';
 import AddCharacterForm from './AddCharacterForm';
 import ConfirmationModal from './ConfirmationModal'; // Import the modal component
@@ -85,7 +88,9 @@ function App() {
     };
 
   return (
-    <div className="App">
+    <ThemeProvider theme={theme}>
+    <CssBaseline />
+    <div className="App" style={{ backgroundColor: theme.palette.background.default, minHeight: '100vh' }}>
       <h1 style={{ margin: '0px 10px' }}>D&D Combat Tracker</h1>
       <div className="instruction">Click on an Initiative score to edit</div>
       <div className="instruction">Use up and down arrow keys to highlight the active character</div>
@@ -124,6 +129,7 @@ function App() {
         message="Are you sure you want to reset the entire list of characters?"
       />
     </div>
+    </ThemeProvider>
   );
 }
 
