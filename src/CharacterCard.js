@@ -75,7 +75,7 @@ function CharacterCard({ character, index, onUpdateCharacter, onRemoveCharacter,
     <div style={{ display: 'flex', alignItems: 'center' }}>
           <div>Statuses:</div>
           <div>
-            {["Helpless", "Advantaged"].map((status) => (
+            {["Helpless", "Advantaged", "Concentrating"].map((status) => (
               <button
                 key={status}
                 onClick={() => toggleStatus(status)}

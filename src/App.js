@@ -86,13 +86,15 @@ function App() {
 
   return (
     <div className="App">
-      <h1>D&D Combat Tracker</h1>
+      <h1 style={{ margin: '0px 10px' }}>D&D Combat Tracker</h1>
       <div className="instruction">Click on an Initiative score to edit</div>
       <div className="instruction">Use up and down arrow keys to highlight the active character</div>
       <h3 style={{ margin: '0px 10px' }}>Add and reset characters</h3>
-      <AddCharacterForm onAddCharacter={addCharacter} />
-      <button style={{ margin: '0px 10px' }} onClick={handleReset}>Reset Characters</button>
-      <hr className="separator" />
+      <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between', marginBottom: '20px' }}>
+          <AddCharacterForm onAddCharacter={addCharacter} />
+          <button onClick={handleReset} style={{ margin: '0px 10px' }}>Reset Characters</button>
+        </div>
+    <hr className="separator" />
     <div style={{ display: 'flex', flexDirection: 'row' }}>
     <div style={{ flex: 1, marginRight: '20px' }}> {/* InitiativeList Container */}
         <InitiativeList characters={characters}
@@ -104,6 +106,7 @@ function App() {
     <div style={{ flex: 1 }}> {/* Image Upload and Display Container */}
         {/* Image upload input and display logic here */}
         <div style={{ margin: '20px 0' }}>
+          <div>Upload an accent image here</div>
           <input type="file" onChange={handleImageUpload} accept="image/*" />
         </div>
         {imageSrc && (
