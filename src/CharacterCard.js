@@ -28,6 +28,18 @@ function CharacterCard({ character, index, onUpdateCharacter, onRemoveCharacter,
         }
       };
 
+    // Function to update the initiative and close the editor
+    const handleChangeInitiative = (e) => {
+      const newInitiative = Number(e.target.value);
+      setEditedInitiative(newInitiative); // Update the edited initiative value
+      const updatedCharacter = {
+        ...character,
+        initiative: newInitiative,
+      };
+      onUpdateCharacter(index, updatedCharacter); // Update the character in the parent component
+      setIsEditing(false); // Close the select dropdown by setting isEditing to false
+    };
+
   // Toggle status on or off
   const toggleStatus = (status) => {
     const hasStatus = editedStatus.includes(status);
@@ -48,7 +60,7 @@ function CharacterCard({ character, index, onUpdateCharacter, onRemoveCharacter,
               <>
                 <select
                     value={editedInitiative}
-                    onChange={(e) => setEditedInitiative(Number(e.target.value))}
+                    onChange={handleChangeInitiative}
                   >
                     {Array.from({ length: 31 }, (_, i) => (
                       <option key={i} value={i}>{i}</option>

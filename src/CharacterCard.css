@@ -9,5 +9,5 @@
   color: red;
 }
 .character-card.selected {
-  background: content-box radial-gradient(white, skyblue);
+  background: content-box radial-gradient(skyblue, white);
 }
